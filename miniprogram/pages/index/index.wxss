@@ -1,0 +1,81 @@
+.tabs {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+.play-container {
+  position: fixed;
+  bottom: 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  background: #fff;
+  z-index: 10;
+}
+.play-container .img .image {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50px;
+  position: relative;
+  animation: img-active 5s linear infinite;
+  border: 1px solid #eee;
+}
+.play-container .control {
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.menu-box {
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  width: 750rpx;
+  border-top: 1px solid #eee;
+  display: flex;
+  background: #fff;
+  z-index: 9;
+  
+}
+.menu-item {
+  flex: 1;
+  text-align: center;
+}
+.play-container .img {
+  text-align: center;
+}
+
+
+
+.play-container .img .pause {
+  animation-play-state: paused;
+}
+.play-container .content {
+  flex: 1;
+}
+.play-container .setting /deep/ .i-icon,
+.play-container .control /deep/ .i-icon {
+  font-size: 30rpx;
+}
+.play-container .setting {
+  margin-left: 30rpx;
+}
+.music-list-container {
+  width: 100%;
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+.modal-tip {
+  margin-top: 3px;
+  color: red;
+}
+@keyframes img-active {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

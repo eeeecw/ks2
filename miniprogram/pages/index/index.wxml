@@ -1,0 +1,47 @@
+
+  <view class="container">
+    <i-tabs class="tabs" current="{{ currentTab }}" bindchange="handleChangeTabs">
+      <i-tab key="people" title="口哨"/>
+      <i-tab key="parrot" title="鹦鹉"/>
+    </i-tabs>
+    <view class="music-list-container">
+      <i-cell-group>
+        <i-cell  wx:for="{{ musicList }}" wx:key="{{ index }}" title="{{ item.name }}" bindtap="handlePlay" data-item="{{item}}">
+          <i-icon wx:if="{{ music.src === item.src }}" color="#67c23a" size="20" slot="icon" type="play"/>
+        </i-cell>
+      </i-cell-group>
+    </view>
+    <view class="play-container">
+      <view class="img">
+        <image class="image {{ music.status ? '' : 'pause' }}" mode="aspectFit" src="{{ music.img }}"/>
+      </view>
+      <view class="control" wx:if="{{ music.src }}">
+        <i-icon size="22" wx:if="{{ music.status === 0 }}" type="play_fill"/>
+        <i-icon size="22" wx:else type="suspend"/>
+      </view>
+      <!-- <view class="content">
+        {{ music.name }}
+      </view>
+      <view class="time" wx:if="{{ music.duration }}">
+        {{ music.currentTime + ' / ' + music.duration }}
+      </view>
+      <view class="setting" bindtap="handleShowModal">
+        <i-icon type="setup_fill"/>
+      </view>
+      <view wx:if="{{ music.src }}" class="control" bindtap="handleChangePlayStatus">
+        <i-icon size="22" wx:if="{{ music.status === 0 }}" type="play_fill"/>
+        <i-icon size="22" wx:else type="suspend"/>
+      </view> -->
+    </view>
+    <view class="menu-box">
+      <view class="menu-item">口哨库</view>
+      <view class="menu-item">我的</view>
+    </view>
+    <i-modal class="modal" title="设置" cancel-text="取消循环" visible="{{ modalVisible }}"  bind:ok="handleModalOk" bind:cancel="handleModalCancel">
+      <i-input-number value="{{ loop.start }}" min="0" max="{{ music.duration }}" bindchange="handleChangeMusicStart"/>
+      <i-input-number value="{{ loop.end }}" min="0" max="{{ music.duration }}" bindchange="handleChangeMusicEnd"/>
+      <view class="modal-tip" wx:if="{{ loop.start === loop.end }}">
+        <text>开始时间不能和结束时间相同</text>
+      </view>
+    </i-modal>
+  </view>
